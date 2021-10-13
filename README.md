@@ -26,7 +26,7 @@
  
  Req 5: Teleop: Joystick turns CIM motor forward and reverse (from +100% to -100%)
  
- Req 6: Teleop: Hold Y - turn SparkMax/Neo at 20% power
+ Req 6: Teleop: Hold Y - turn SparkMax/Neo using 2.5 volts
  
  Req 7: All: Show limit switch state on Shuffleboard (not pressed = red, pressed = green)
  
