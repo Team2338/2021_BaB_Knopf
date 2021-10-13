@@ -1,8 +1,15 @@
 
 package team.gif.robot;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.robot.commands.CIMJoystickControl;
+import team.gif.robot.subsystems.LimitSwitch;
+import team.gif.robot.subsystems.drivers.Pigeon;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -13,7 +20,11 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
 
   public static OI oi;
+  public static LimitSwitch bumpSwitch;
+  public static Pigeon myPigeon;
+  public static WPI_TalonSRX myTalon;
 
+  public static CIMJoystickControl CIMJoystickControlCommand = null;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -22,10 +33,26 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     System.out.println("robot init");
-    // autonomous chooser on the dashboard.
 
+    bumpSwitch = new LimitSwitch();
+
+    myTalon = new WPI_TalonSRX(RobotMap.MOTOR_TALON_ONE);
+
+    myPigeon = new Pigeon(myTalon);
+    myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
+
+    // Req 7
+    ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard");
+    tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
+
+    Globals.g_buttonControl = false;
+    CIMJoystickControlCommand = new CIMJoystickControl();
   }
 
+  // wrapper function to get the compass heading from the pigeon instance
+  public double getCompassHeading(){
+    return myPigeon.getCompassHeading();
+  };
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -38,6 +65,14 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
+    // Req 3
+//    System.out.println(bumpSwitch.getLimitState());
+
+    // Req 6
+    SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());
+
+    // Req 4
+//    System.out.println(myPigeon.get360Heading());
   }
 
   /**
@@ -67,6 +102,8 @@ public class Robot extends TimedRobot {
     System.out.println("teleop init");
 
     oi = new OI();
+
+    CIMJoystickControlCommand.schedule();
   }
 
   @Override

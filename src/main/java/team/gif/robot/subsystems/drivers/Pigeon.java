@@ -21,21 +21,25 @@ public class Pigeon {
         return instance;
     }
 
+    // used when the Pigeon is connected in the CAN path directly
     public Pigeon(){
         _pigeon = new PigeonIMU(RobotMap.PIGEON);
         instance = this;
     }
 
+    // used when the Pigeon is connected through a TalonSRX
     public Pigeon(TalonSRX talon){
         _pigeon = new PigeonIMU(talon);
         instance = this;
+    }
 
+    // Adds a compass widget to the Shuffleboard with basic parameters on the "SmartDashboard" tab
+    public void addToShuffleboard(String tabTitle) {
         // Puts a Gyro type widget on dashboard and assigns
         // the function getHeading_Shuffleboard
         ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard"); //gets a reference to the shuffleboard tab
-        tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()-> getCompassHeading(),null);});
+        tab.add(tabTitle,(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()-> getCompassHeading(),null);});
     }
-
 
     /**
      * Returns heading from pigeon

@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import team.gif.lib.AxisButton;
+import team.gif.robot.commands.RunCIMShooter;
+import team.gif.robot.commands.RunNEOShooterVoltage;
+import team.gif.robot.commands.RunNEOShooterRPM;
 
 
 public class OI {
@@ -66,7 +69,10 @@ public class OI {
          * dRT.whileHeld(new EjectCommand());
          *
          */
-
+        //dA.whileHeld(new RunShooter());
+        dB.whileHeld(new RunCIMShooter(true));
+        dX.whileHeld(new RunCIMShooter(false));
+        dA.whileHeld(new RunNEOShooterRPM());
+        dY.whileHeld(new RunNEOShooterVoltage());
     }
-
 }
