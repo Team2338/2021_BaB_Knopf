@@ -26,11 +26,17 @@
  
  Req 5: Teleop: Joystick turns CIM motor forward and reverse (from +100% to -100%)
  
- Req 6: Teleop: Hold A - turn SparkMax/Neo 60 RPM, display RPM to console
-
- ### Intermediate
+ Req 6: Teleop: Hold Y - turn SparkMax/Neo at 20% power
+ 
  Req 7: All: Show limit switch state on Shuffleboard (not pressed = red, pressed = green)
  
  Req 8: All: Show pigeon heading and display using compass widget on Shuffleboard
  
+ ### Intermediate
+
  Req 9: Teleop: If switch is pressed, cut TalonSRX/CIM power by 50% (when B and X are held)
+ 
+ ### Advanced
+ 
+ Req 10: Teleop: Hold A - turn SparkMax/Neo 60 RPM, display RPM to console
+
