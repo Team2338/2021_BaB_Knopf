@@ -6,11 +6,13 @@ import team.gif.robot.subsystems.CIMShooter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
- * An example command that uses an example subsystem.
+ * Sends the appropriate speed to the CIM
  */
 public class RunCIMShooter extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
+    // used to determine if the motor is to spin forward or reverse
+    // based on the inbound parameter
     boolean _forward;
 
     public RunCIMShooter(boolean isForward) {
@@ -20,6 +22,8 @@ public class RunCIMShooter extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        // set this global variable to true so other classes
+        // // know we have control of the joystick
         Globals.g_buttonControl = true;
     }
 
@@ -29,16 +33,16 @@ public class RunCIMShooter extends CommandBase {
 
         double speed = 0.2;
 
-        // Req 12
+        // Req 9
         if ( Robot.bumpSwitch.getLimitState() == true) {
             speed = speed / 2;
         }
 
         if(_forward) {
-            // Req 1
+            // Req 3
             CIMShooter.getInstance().setSpeed(speed);
         } else {
-            // Req 2
+            // Req 4
             CIMShooter.getInstance().setSpeed(-speed);
         }
     }

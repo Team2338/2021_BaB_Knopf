@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
     myPigeon = new Pigeon(myTalon);
     myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
 
-    // Req 7
+    // Req 8
     ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard");
     tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
 
@@ -65,14 +65,15 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
-    // Req 3
+    // Req 1 - commented out to not clutter the log
 //    System.out.println(bumpSwitch.getLimitState());
 
-    // Req 6
+    // Req 2 - commented out to not clutter the log
+//    System.out.println(myPigeon.get360Heading());
+
+    // Req 7
     SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());
 
-    // Req 4
-//    System.out.println(myPigeon.get360Heading());
   }
 
   /**
@@ -103,6 +104,7 @@ public class Robot extends TimedRobot {
 
     oi = new OI();
 
+    // Schedules the joystick listener for Req 5
     CIMJoystickControlCommand.schedule();
   }
 

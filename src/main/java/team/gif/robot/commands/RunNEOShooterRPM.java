@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import team.gif.robot.subsystems.NEOShooter;
 
 /**
- * An example command that uses an example subsystem.
+ * CommandBase which runs the NEO at a constant RPM
  */
 public class RunNEOShooterRPM extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})

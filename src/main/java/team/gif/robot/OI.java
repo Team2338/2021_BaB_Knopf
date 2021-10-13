@@ -69,10 +69,9 @@ public class OI {
          * dRT.whileHeld(new EjectCommand());
          *
          */
-        //dA.whileHeld(new RunShooter());
-        dB.whileHeld(new RunCIMShooter(true));
-        dX.whileHeld(new RunCIMShooter(false));
-        dA.whileHeld(new RunNEOShooterRPM());
-        dY.whileHeld(new RunNEOShooterVoltage());
+        dB.whileHeld(new RunCIMShooter(true)); // Req 3
+        dX.whileHeld(new RunCIMShooter(false)); // Req 4
+        dA.whileHeld(new RunNEOShooterRPM()); // Req 6
+        dY.whileHeld(new RunNEOShooterVoltage()); // No Req - just trying it out
     }
 }

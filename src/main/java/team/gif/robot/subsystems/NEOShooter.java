@@ -7,9 +7,14 @@ import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import team.gif.robot.RobotMap;
 
+/**
+ * Describes the functionality of the NEO motor
+ * Can use voltage as input or RPM
+ */
 public class NEOShooter extends SubsystemBase {
     private static NEOShooter instance = null;
 
+    // creates a singleton class (only 1 instance can be instantiated)
     public static NEOShooter getInstance() {
         if (instance == null) {
             instance = new NEOShooter();

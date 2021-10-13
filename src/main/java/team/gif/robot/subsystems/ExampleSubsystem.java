@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  * Subsystems describe functionality of a particular feature of
  * the robot. It contains methods for commands (and other methods)
  *    to interact with the subsystem.
- * Example: An Elevator subsusytem might have commands which
+ * Example: An Elevator subsysytem might have commands which
  *    set a zero position setZeroPosition()
  *    get position getPosition()
  *    move hanger to a specific height setHeight()

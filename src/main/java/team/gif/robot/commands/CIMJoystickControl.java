@@ -15,16 +15,11 @@ import team.gif.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
- * An example command that uses an example subsystem.
+ * Responds to left joystick input for speed of the CIM
  */
 public class CIMJoystickControl extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-    /**
-     * Creates a new ExampleCommand.
-     *
-     * @param subsystem The subsystem used by this command.
-     */
     public CIMJoystickControl() {
     }
 
@@ -36,6 +31,8 @@ public class CIMJoystickControl extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        // Need to ignore the joystick if the user is pushing the buttons which also
+        // control speed
         if(!Globals.g_buttonControl) {
             // max the output to 30%, otherwise motor goes off rails
             // get the joystick reading
@@ -45,6 +42,7 @@ public class CIMJoystickControl extends CommandBase {
             // use the sign and the absolute value of the reading maxed at 30%
             currPercent = sign *  Math.min(Math.abs(currPercent),0.3);
 
+            // Req 5
             CIMShooter.getInstance().setSpeed(currPercent);
         }
     }
