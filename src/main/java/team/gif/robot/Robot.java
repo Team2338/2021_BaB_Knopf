@@ -65,11 +65,8 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
-    // Req 1 - commented out to not clutter the log
-//    System.out.println(bumpSwitch.getLimitState());
-
-    // Req 2 - commented out to not clutter the log
-//    System.out.println(myPigeon.get360Heading());
+    // Req 1 and Req 2
+    System.out.println(bumpSwitch.getLimitState() + "   " + getCompassHeading());
 
     // Req 7
     SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());

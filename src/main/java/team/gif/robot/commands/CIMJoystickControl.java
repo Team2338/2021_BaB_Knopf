@@ -36,7 +36,7 @@ public class CIMJoystickControl extends CommandBase {
         if(!Globals.g_buttonControl) {
             // max the output to 30%, otherwise motor goes off rails
             // get the joystick reading
-            double currPercent = Robot.oi.driver.getY(GenericHID.Hand.kLeft);
+            double currPercent = -Robot.oi.driver.getY(GenericHID.Hand.kLeft);
 
             // implement a dead band
             if( Math.abs(currPercent) < 0.05){
