@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import team.gif.robot.commands.CIMJoystickControl;
 import team.gif.robot.subsystems.LimitSwitch;
+import team.gif.robot.subsystems.NEOShooter;
 import team.gif.robot.subsystems.drivers.Pigeon;
 
 /**
@@ -71,6 +72,7 @@ public class Robot extends TimedRobot {
     // Req 7
     SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());
 
+    SmartDashboard.putNumber("Shooter RPM", NEOShooter.getInstance().getRPM());
   }
 
   /**
