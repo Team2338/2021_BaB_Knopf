@@ -8,6 +8,7 @@
 package team.gif.robot.commands;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import team.gif.robot.Constants;
 import team.gif.robot.Globals;
 import team.gif.robot.Robot;
 import team.gif.robot.subsystems.CIMShooter;
@@ -44,12 +45,22 @@ public class CIMJoystickControl extends CommandBase {
             }
 
             // get the sign (positive or negative)
-            int sign =  (currPercent > 0) ? 1 : -1;
+            int sign =  (currPercent > 0) ? -1 : 1;
             // use the sign and the absolute value of the reading maxed at 30%
-            currPercent = sign *  Math.min(Math.abs(currPercent),0.3);
+            currPercent = sign *  Math.min(Math.abs(currPercent),0.5);
 
             // Req 5
-            CIMShooter.getInstance().setSpeed(currPercent);
+            double climbPos = CIMShooter.getInstance().getClimberPos();
+
+//            if( climbPos <= 10000 && climbPos >= Constants.Climber.MAX_CLIMB_POS+10000) {
+//            if( climbPos >= 0 && climbPos <= 23700) {
+            System.out.println(currPercent);
+
+//            if( climbPos >= 5000 && climbPos <= 18000) {
+                CIMShooter.getInstance().setSpeed(currPercent);
+//            } else {
+//                CIMShooter.getInstance().setSpeed(0);
+//            }
         }
     }
 

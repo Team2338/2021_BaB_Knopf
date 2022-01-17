@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
  *
  */
 public final class Constants {
-
-
+    public static class Climber {
+        public static final double MAX_CLIMB_POS = -23400;
+    }
 }

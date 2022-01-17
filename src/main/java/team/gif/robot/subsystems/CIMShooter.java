@@ -25,10 +25,21 @@ public class CIMShooter extends SubsystemBase {
 
     public CIMShooter() {
         CIMShooterMotor.setNeutralMode( NeutralMode.Brake);
+
+        CIMShooterMotor.setInverted(true);
     }
 
     // sets speed from -1 to 1
     public void setSpeed(double speed) {
         CIMShooterMotor.set(ControlMode.PercentOutput, speed);
     }
+
+    public double getClimberPos() {
+        return CIMShooterMotor.getSelectedSensorPosition();
+    }
+
+    public void resetClimberPos() {
+        CIMShooterMotor.setSelectedSensorPosition(0);
+    }
 }
+

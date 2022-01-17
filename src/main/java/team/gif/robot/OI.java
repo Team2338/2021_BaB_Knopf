@@ -7,6 +7,7 @@ import team.gif.lib.AxisButton;
 import team.gif.robot.commands.RunCIMShooter;
 import team.gif.robot.commands.RunNEOShooterVoltage;
 import team.gif.robot.commands.RunNEOShooterRPM;
+import team.gif.robot.commands.hanger.ResetClimber;
 
 
 public class OI {
@@ -72,6 +73,7 @@ public class OI {
         dB.whileHeld(new RunCIMShooter(true)); // Req 3
         dX.whileHeld(new RunCIMShooter(false)); // Req 4
         dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
-        dA.whileHeld(new RunNEOShooterRPM()); // Req 10
+        dA.whileHeld(new RunNEOShooterRPM()); // Req
+        dStart.whenPressed(new ResetClimber());
     }
 }

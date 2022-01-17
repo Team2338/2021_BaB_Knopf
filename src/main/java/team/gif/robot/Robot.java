@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import team.gif.robot.commands.CIMJoystickControl;
+import team.gif.robot.subsystems.CIMShooter;
 import team.gif.robot.subsystems.LimitSwitch;
 import team.gif.robot.subsystems.NEOShooter;
+import team.gif.robot.commands.hanger.ResetClimber;
 import team.gif.robot.subsystems.drivers.Pigeon;
 
 /**
@@ -22,7 +24,7 @@ public class Robot extends TimedRobot {
 
   public static OI oi;
   public static LimitSwitch bumpSwitch;
-  public static Pigeon myPigeon;
+//-  public static Pigeon myPigeon;
   public static WPI_TalonSRX myTalon;
 
   public static CIMJoystickControl CIMJoystickControlCommand = null;
@@ -39,21 +41,24 @@ public class Robot extends TimedRobot {
 
     myTalon = new WPI_TalonSRX(RobotMap.MOTOR_TALON_ONE);
 
-    myPigeon = new Pigeon(myTalon);
-    myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
+//-    myPigeon = new Pigeon(myTalon);
+//-    myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
 
     // Req 8
-    ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard");
-    tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
+//-    ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard");
+//-    tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
+
+    SmartDashboard.putData("Climber", new ResetClimber());
 
     Globals.g_buttonControl = false;
     CIMJoystickControlCommand = new CIMJoystickControl();
   }
 
   // wrapper function to get the compass heading from the pigeon instance
-  public double getCompassHeading(){
-    return myPigeon.getCompassHeading();
-  };
+//-  public double getCompassHeading(){
+//-    return myPigeon.getCompassHeading();
+//-  };
+
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -67,12 +72,14 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
 
     // Req 1 and Req 2
-    System.out.println(bumpSwitch.getLimitState() + "   " + getCompassHeading());
+//-    System.out.println(bumpSwitch.getLimitState() + "   " + getCompassHeading());
 
     // Req 7
     SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());
 
     SmartDashboard.putNumber("Shooter RPM", NEOShooter.getInstance().getRPM());
+
+    SmartDashboard.putNumber("Climber Position", CIMShooter.getInstance().getClimberPos());
   }
 
   /**
