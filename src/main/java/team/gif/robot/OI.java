@@ -4,9 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import team.gif.lib.AxisButton;
-import team.gif.robot.commands.RunCIMShooter;
-import team.gif.robot.commands.RunNEOShooterVoltage;
-import team.gif.robot.commands.RunNEOShooterRPM;
+import team.gif.robot.commands.*;
 import team.gif.robot.commands.hanger.ResetClimber;
 
 
@@ -75,5 +73,8 @@ public class OI {
 //        dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
 //        dA.whileHeld(new RunNEOShooterRPM()); // Req
         dStart.whenPressed(new ResetClimber());
+        dDPadDown.whenPressed(new ElevatorMax());
+        dDPadLeft.whenPressed(new LowerElevator());
+        dDPadUp.whenPressed(new Raise4Inches());
     }
 }

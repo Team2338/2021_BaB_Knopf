@@ -1,4 +1,4 @@
-package team.gif.robot.commands.hanger;
+package team.gif.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import team.gif.robot.Constants;
