@@ -47,7 +47,7 @@ public class CIMJoystickControl extends CommandBase {
             // get the sign (positive or negative)
             int sign =  (currPercent > 0) ? -1 : 1;
             // use the sign and the absolute value of the reading maxed at 30%
-            currPercent = sign *  Math.min(Math.abs(currPercent),0.5);
+            currPercent = sign *  Math.min(Math.abs(currPercent),0.8);
 
             // Req 5
             double climbPos = CIMShooter.getInstance().getClimberPos();
@@ -56,11 +56,13 @@ public class CIMJoystickControl extends CommandBase {
 //            if( climbPos >= 0 && climbPos <= 23700) {
             System.out.println(currPercent);
 
-//            if( climbPos >= 5000 && climbPos <= 18000) {
+            if( climbPos <= 24600 && currPercent < 0 ){
                 CIMShooter.getInstance().setSpeed(currPercent);
-//            } else {
-//                CIMShooter.getInstance().setSpeed(0);
-//            }
+            } else if (climbPos >= 1000 && currPercent > 0 ){
+                CIMShooter.getInstance().setSpeed(currPercent);
+            } else {
+                CIMShooter.getInstance().setSpeed(0);
+            }
         }
     }
 

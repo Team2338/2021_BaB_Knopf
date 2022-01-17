@@ -70,10 +70,10 @@ public class OI {
          * dRT.whileHeld(new EjectCommand());
          *
          */
-        dB.whileHeld(new RunCIMShooter(true)); // Req 3
-        dX.whileHeld(new RunCIMShooter(false)); // Req 4
-        dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
-        dA.whileHeld(new RunNEOShooterRPM()); // Req
+        dA.whileHeld(new RunCIMShooter(true)); // Req 3
+        dY.whileHeld(new RunCIMShooter(false)); // Req 4
+//        dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
+//        dA.whileHeld(new RunNEOShooterRPM()); // Req
         dStart.whenPressed(new ResetClimber());
     }
 }

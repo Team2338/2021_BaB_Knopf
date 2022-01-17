@@ -16,6 +16,8 @@ public class RunCIMShooter extends CommandBase {
     boolean _forward;
 
     public RunCIMShooter(boolean isForward) {
+
+//        addRequirements(CIMShooter.getInstance());
         _forward = isForward;
     }
 
@@ -31,7 +33,7 @@ public class RunCIMShooter extends CommandBase {
     @Override
     public void execute() {
 
-        double speed = 0.2;
+        double speed = 0.55;
 
         // Req 9
         if ( Robot.bumpSwitch.getLimitState() == true) {

@@ -27,6 +27,11 @@ public class CIMShooter extends SubsystemBase {
         CIMShooterMotor.setNeutralMode( NeutralMode.Brake);
 
         CIMShooterMotor.setInverted(true);
+
+//        CIMShooterMotor.configForwardSoftLimitThreshold(15000);
+//        CIMShooterMotor.configReverseSoftLimitThreshold(5000);
+        CIMShooterMotor.configReverseSoftLimitEnable(false);
+        CIMShooterMotor.configForwardSoftLimitEnable(false);
     }
 
     // sets speed from -1 to 1
