@@ -32,12 +32,7 @@ public class ElevatorMax extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if(CIMShooter.getInstance().getClimberPos() > 24000) {
-          return true;
-      }
-      else {
-          return false;
-      }
+      return CIMShooter.getInstance().getClimberPos() > 24000;
   }
 
   // Called once the command ends or is interrupted.

@@ -13,21 +13,23 @@ import team.gif.robot.subsystems.CIMShooter;
 /**
  * Describe the Command functionality here
  */
-public class Raise4Inches extends CommandBase {
+public class Lower4Inches extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      CIMShooter.getInstance().setSpeed(0);
+    //Use Robot weight to go down
+    CIMShooter.getInstance().setSpeed(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
       if(CIMShooter.getInstance().getClimberPos() < 20000) {
-          CIMShooter.getInstance().setSpeed(0);
+        //uses this power to stay stable
+          CIMShooter.getInstance().setSpeed(0.55);
       }
   }
 

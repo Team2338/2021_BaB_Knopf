@@ -20,6 +20,7 @@ public class LowerElevator extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Climb
       CIMShooter.getInstance().setSpeed(0.95);
   }
 
@@ -27,6 +28,7 @@ public class LowerElevator extends CommandBase {
   @Override
   public void execute() {
       if(CIMShooter.getInstance().getClimberPos() < 200) {
+        //Hold position
           CIMShooter.getInstance().setSpeed(0.55);
       }
   }

@@ -75,6 +75,6 @@ public class OI {
         dStart.whenPressed(new ResetClimber());
         dDPadDown.whenPressed(new ElevatorMax());
         dDPadLeft.whenPressed(new LowerElevator());
-        dDPadUp.whenPressed(new Raise4Inches());
+        dDPadUp.whenPressed(new Lower4Inches());
     }
 }
