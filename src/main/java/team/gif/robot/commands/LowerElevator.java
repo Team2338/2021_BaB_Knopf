@@ -16,7 +16,6 @@ import team.gif.robot.subsystems.CIMShooter;
 public class LowerElevator extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -27,8 +26,10 @@ public class LowerElevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(CIMShooter.getInstance().getClimberPos() < 200) {
-        //Hold position
+      double climberPos = CIMShooter.getInstance().getClimberPos();
+      if( climberPos < 40.0 ) { // near bottom - need to stop so we don't overrun - safety mechanism
+          CIMShooter.getInstance().setSpeed(0);
+      } else if( climberPos < 200.0 ) { // elevator in low position, run motor at small power to hold position
           CIMShooter.getInstance().setSpeed(0.55);
       }
   }

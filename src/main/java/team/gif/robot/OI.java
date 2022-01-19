@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import team.gif.lib.AxisButton;
 import team.gif.robot.commands.*;
-import team.gif.robot.commands.hanger.ResetClimber;
+import team.gif.robot.commands.ResetClimber;
 
 
 public class OI {

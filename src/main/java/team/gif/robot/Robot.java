@@ -11,7 +11,7 @@ import team.gif.robot.commands.CIMJoystickControl;
 import team.gif.robot.subsystems.CIMShooter;
 import team.gif.robot.subsystems.LimitSwitch;
 import team.gif.robot.subsystems.NEOShooter;
-import team.gif.robot.commands.hanger.ResetClimber;
+import team.gif.robot.commands.ResetClimber;
 import team.gif.robot.subsystems.drivers.Pigeon;
 
 /**
