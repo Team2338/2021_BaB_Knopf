@@ -48,6 +48,7 @@ public class Robot extends TimedRobot {
 
     Globals.g_buttonControl = false;
     CIMJoystickControlCommand = new CIMJoystickControl();
+    SmartDashboard.putNumber("Shooter Speed", 0.6);
   }
 
   // wrapper function to get the compass heading from the pigeon instance

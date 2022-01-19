@@ -1,5 +1,6 @@
 package team.gif.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import team.gif.robot.Globals;
 import team.gif.robot.Robot;
 import team.gif.robot.subsystems.CIMShooter;
@@ -14,6 +15,7 @@ public class RunCIMShooter extends CommandBase {
     // used to determine if the motor is to spin forward or reverse
     // based on the inbound parameter
     boolean _forward;
+    private double speed = 0.6;
 
     public RunCIMShooter(boolean isForward) {
         _forward = isForward;
@@ -25,16 +27,17 @@ public class RunCIMShooter extends CommandBase {
         // set this global variable to true so other classes
         // // know we have control of the joystick
         Globals.g_buttonControl = true;
+        speed = SmartDashboard.getNumber("Shooter Speed", 0.6);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
 
-        double speed = 0.2;
+
 
         // Req 9
-        if ( Robot.bumpSwitch.getLimitState() == true) {
+        if (Robot.bumpSwitch.getLimitState()) {
             speed = speed / 2;
         }
 
