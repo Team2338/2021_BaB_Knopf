@@ -8,6 +8,8 @@
 package team.gif.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import team.gif.robot.Constants;
+import team.gif.robot.Robot;
 import team.gif.robot.subsystems.CIMShooter;
 
 /**
@@ -16,28 +18,34 @@ import team.gif.robot.subsystems.CIMShooter;
 public class ElevatorMax extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
-
-
+  public ElevatorMax() {
+      super();
+      addRequirements(Robot.cimShooter);
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-      CIMShooter.getInstance().setSpeed(0.8);
+      System.out.println("here .........");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+      Robot.cimShooter.setSpeed(Constants.Climber.ELEVATOR_UP_UNLOADED_VOLTAGE);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      return CIMShooter.getInstance().getClimberPos() > 24000;
+      return Robot.cimShooter.getClimberPos() > Constants.Climber.CLIMBER_MAX_POSITION;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-      CIMShooter.getInstance().setSpeed(0);
+
+      System.out.println("here .........again");
+      Robot.cimShooter.setSpeed(0);
   }
 }

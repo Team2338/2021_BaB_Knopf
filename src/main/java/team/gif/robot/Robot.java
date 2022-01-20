@@ -22,12 +22,14 @@ import team.gif.robot.subsystems.drivers.Pigeon;
  */
 public class Robot extends TimedRobot {
 
+    public static CIMShooter cimShooter = new CIMShooter();
+
   public static OI oi;
   public static LimitSwitch bumpSwitch;
 //-  public static Pigeon myPigeon;
   public static WPI_TalonSRX myTalon;
 
-  public static CIMJoystickControl CIMJoystickControlCommand = null;
+//  public static CIMJoystickControl CIMJoystickControlCommand = null;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -40,6 +42,7 @@ public class Robot extends TimedRobot {
     bumpSwitch = new LimitSwitch();
 
     myTalon = new WPI_TalonSRX(RobotMap.MOTOR_TALON_ONE);
+    CommandScheduler.getInstance().setDefaultCommand(cimShooter, new CIMJoystickControl());
 
 //-    myPigeon = new Pigeon(myTalon);
 //-    myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
@@ -49,9 +52,10 @@ public class Robot extends TimedRobot {
 //-    tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
 
     SmartDashboard.putData("Climber", new ResetClimber());
+    SmartDashboard.putData(cimShooter);
 
     Globals.g_buttonControl = false;
-    CIMJoystickControlCommand = new CIMJoystickControl();
+//    CIMJoystickControlCommand = new CIMJoystickControl();
   }
 
   // wrapper function to get the compass heading from the pigeon instance
@@ -71,6 +75,7 @@ public class Robot extends TimedRobot {
 
     CommandScheduler.getInstance().run();
 
+
     // Req 1 and Req 2
 //-    System.out.println(bumpSwitch.getLimitState() + "   " + getCompassHeading());
 
@@ -79,7 +84,7 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Shooter RPM", NEOShooter.getInstance().getRPM());
 
-    SmartDashboard.putNumber("Climber Position", CIMShooter.getInstance().getClimberPos());
+    SmartDashboard.putNumber("Climber Position", cimShooter.getClimberPos());
   }
 
   /**
@@ -111,7 +116,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
     // Schedules the joystick listener for Req 5
-    CIMJoystickControlCommand.schedule();
+    //CIMJoystickControlCommand.schedule();
   }
 
   @Override

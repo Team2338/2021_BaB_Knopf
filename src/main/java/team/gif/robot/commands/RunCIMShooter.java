@@ -16,7 +16,7 @@ public class RunCIMShooter extends CommandBase {
     boolean _forward;
 
     public RunCIMShooter(boolean isForward) {
-
+        super();
 //        addRequirements(CIMShooter.getInstance());
         _forward = isForward;
     }
@@ -33,7 +33,7 @@ public class RunCIMShooter extends CommandBase {
     @Override
     public void execute() {
 
-        double speed = 0.55;
+        double speed = 0.8;
 
         // Req 9
         if ( Robot.bumpSwitch.getLimitState() == true) {
@@ -42,10 +42,10 @@ public class RunCIMShooter extends CommandBase {
 
         if(_forward) {
             // Req 3
-            CIMShooter.getInstance().setSpeed(speed);
+            Robot.cimShooter.setSpeed(speed);
         } else {
             // Req 4
-            CIMShooter.getInstance().setSpeed(-speed);
+            Robot.cimShooter.setSpeed(-speed);
         }
     }
 
@@ -58,7 +58,7 @@ public class RunCIMShooter extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        CIMShooter.getInstance().setSpeed(0);
+        Robot.cimShooter.setSpeed(0);
         Globals.g_buttonControl = false;
     }
 }

@@ -8,6 +8,8 @@
 package team.gif.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import team.gif.robot.Constants;
+import team.gif.robot.Robot;
 import team.gif.robot.subsystems.CIMShooter;
 
 /**
@@ -18,29 +20,33 @@ public class Lower4Inches extends CommandBase {
 
 
   // Called when the command is initially scheduled.
+  public Lower4Inches() {
+      super();
+      addRequirements(Robot.cimShooter);
+  }
   @Override
   public void initialize() {
     //Use Robot weight to go down
-    CIMShooter.getInstance().setSpeed(0);
+      System.out.println("Drop Start");
+      Robot.cimShooter.setSpeed(Constants.Climber.CLIMBER_LOADED_DROP_VOLTAGE);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(CIMShooter.getInstance().getClimberPos() < 20000) {
-        //uses this power to stay stable
-          CIMShooter.getInstance().setSpeed(0.55);
-      }
+      //uses this power to stay constant
+      Robot.cimShooter.setSpeed(Constants.Climber.CLIMBER_LOADED_DROP_VOLTAGE);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (Robot.cimShooter.getClimberPos() > Constants.Climber.CLIMBER_FALL_POSITION);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+      System.out.println("Finished Drop");
   }
 }

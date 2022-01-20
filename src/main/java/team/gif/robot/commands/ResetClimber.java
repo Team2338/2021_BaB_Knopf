@@ -10,13 +10,14 @@ public class ResetClimber extends CommandBase {
 
     public ResetClimber() {
         // Use addRequirements() here to declare subsystem dependencies.
+        super();
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
         System.out.println("Resetting Climber Position");
-        CIMShooter.getInstance().resetClimberPos();
+        Robot.cimShooter.resetClimberPos();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

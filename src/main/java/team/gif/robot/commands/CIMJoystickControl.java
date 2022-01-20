@@ -12,7 +12,6 @@ import team.gif.robot.Constants;
 import team.gif.robot.Globals;
 import team.gif.robot.Robot;
 import team.gif.robot.subsystems.CIMShooter;
-import team.gif.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -22,6 +21,8 @@ public class CIMJoystickControl extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
     public CIMJoystickControl() {
+        super();
+        addRequirements(Robot.cimShooter);
     }
 
     // Called when the command is initially scheduled.
@@ -37,7 +38,7 @@ public class CIMJoystickControl extends CommandBase {
         if(!Globals.g_buttonControl) {
             // max the output to 30%, otherwise motor goes off rails
             // get the joystick reading
-            double currPercent = -Robot.oi.driver.getY(GenericHID.Hand.kLeft);
+            double currPercent = Robot.oi.driver.getY(GenericHID.Hand.kLeft);
 
             // implement a dead band
             if( Math.abs(currPercent) < 0.05){
@@ -47,21 +48,21 @@ public class CIMJoystickControl extends CommandBase {
             // get the sign (positive or negative)
             int sign =  (currPercent > 0) ? -1 : 1;
             // use the sign and the absolute value of the reading maxed at 30%
-            currPercent = sign *  Math.min(Math.abs(currPercent),0.8);
+            currPercent = sign *  Math.min(Math.abs(currPercent),Constants.Climber.ELEVATOR_UP_UNLOADED_VOLTAGE);
 
             // Req 5
-            double climbPos = CIMShooter.getInstance().getClimberPos();
+            double climbPos = Robot.cimShooter.getClimberPos();
 
 //            if( climbPos <= 10000 && climbPos >= Constants.Climber.MAX_CLIMB_POS+10000) {
 //            if( climbPos >= 0 && climbPos <= 23700) {
-            System.out.println(currPercent);
+            //System.out.println(currPercent);
 
-            if( climbPos <= 24600 && currPercent < 0 ){
-                CIMShooter.getInstance().setSpeed(currPercent);
-            } else if (climbPos >= 1000 && currPercent > 0 ){
-                CIMShooter.getInstance().setSpeed(currPercent);
+            if(climbPos <= Constants.Climber.CLIMBER_MAX_POSITION && currPercent > 0 ){
+                Robot.cimShooter.setSpeed(currPercent);
+            } else if (climbPos >= 30000 && currPercent < 0 ){
+                Robot.cimShooter.setSpeed(currPercent);
             } else {
-                CIMShooter.getInstance().setSpeed(0);
+                Robot.cimShooter.setSpeed(0);
             }
         }
     }

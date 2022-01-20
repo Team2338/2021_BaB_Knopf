@@ -68,13 +68,14 @@ public class OI {
          * dRT.whileHeld(new EjectCommand());
          *
          */
-        dA.whileHeld(new RunCIMShooter(true)); // Req 3
-        dY.whileHeld(new RunCIMShooter(false)); // Req 4
+//        dA.whileHeld(new RunCIMShooter(true)); // Req 3
+//        dY.whileHeld(new RunCIMShooter(false)); // Req 4
 //        dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
 //        dA.whileHeld(new RunNEOShooterRPM()); // Req
         dStart.whenPressed(new ResetClimber());
-        dDPadDown.whenPressed(new ElevatorMax());
-        dDPadLeft.whenPressed(new LowerElevator());
-        dDPadUp.whenPressed(new Lower4Inches());
+
+        dA.whenPressed(new ElevatorMax());
+        dX.whenPressed(new LowerElevator());
+        dY.whenPressed(new Lower4Inches());
     }
 }
