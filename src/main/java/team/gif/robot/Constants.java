@@ -1,8 +1,4 @@
-
-
 package team.gif.robot;
-
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -11,8 +7,6 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
- *
- * set kF to get close to the target, just under (set kP = 0)
  *
  */
 public final class Constants {
@@ -24,6 +18,16 @@ public final class Constants {
         public static final double CLIMBER_HOLD_LOADED_VOLTAGE = -0.4;
         public static final double CLIMBER_FALL_POSITION = 250000;
         public static final double CLIMBER_LOADED_DROP_VOLTAGE = 0.2;
-
+    }
+    
+    public static class Shooter {
+        public static final double FLYWHEEL_kP = 0.0;
+        public static final double FLYWHEEL_kI = 0.0;
+        public static final double FLYWHEEL_kD = 0.0;
+        public static final double FLYWHEEL_kF = 0.0;
+        public static final int FLYWHEEL_IZONE = 5000;
+        
+        public static final double FLYWHEEL_VELOCITY_TOLERANCE = 200;
+        public static final double FLYWHEEL_ACCELERATION_TOLERANCE = 4;
     }
 }

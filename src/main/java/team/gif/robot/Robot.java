@@ -1,18 +1,10 @@
-
 package team.gif.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import team.gif.robot.commands.CIMJoystickControl;
-import team.gif.robot.subsystems.CIMShooter;
-import team.gif.robot.subsystems.LimitSwitch;
-import team.gif.robot.subsystems.NEOShooter;
-import team.gif.robot.commands.ResetClimber;
-import team.gif.robot.subsystems.drivers.Pigeon;
+import team.gif.robot.commands.IdleShooter;
+import team.gif.robot.subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,122 +13,91 @@ import team.gif.robot.subsystems.drivers.Pigeon;
  * project.
  */
 public class Robot extends TimedRobot {
-
-    public static CIMShooter cimShooter = new CIMShooter();
-
-  public static OI oi;
-  public static LimitSwitch bumpSwitch;
-//-  public static Pigeon myPigeon;
-  public static WPI_TalonSRX myTalon;
-
-//  public static CIMJoystickControl CIMJoystickControlCommand = null;
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
-  @Override
-  public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    System.out.println("robot init");
-
-    bumpSwitch = new LimitSwitch();
-
-    myTalon = new WPI_TalonSRX(RobotMap.MOTOR_TALON_ONE);
-    CommandScheduler.getInstance().setDefaultCommand(cimShooter, new CIMJoystickControl());
-
-//-    myPigeon = new Pigeon(myTalon);
-//-    myPigeon.resetPigeonPosition(); // set initial heading of pigeon to zero degrees
-
-    // Req 8
-//-    ShuffleboardTab   tab  = Shuffleboard.getTab("SmartDashboard");
-//-    tab.add("BotHead",(x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()->getCompassHeading(),null);});
-
-    SmartDashboard.putData("Climber", new ResetClimber());
-    SmartDashboard.putData(cimShooter);
-
-    Globals.g_buttonControl = false;
-//    CIMJoystickControlCommand = new CIMJoystickControl();
-  }
-
-  // wrapper function to get the compass heading from the pigeon instance
-//-  public double getCompassHeading(){
-//-    return myPigeon.getCompassHeading();
-//-  };
-
-  /**
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-
-    CommandScheduler.getInstance().run();
-
-
-    // Req 1 and Req 2
-//-    System.out.println(bumpSwitch.getLimitState() + "   " + getCompassHeading());
-
-    // Req 7
-    SmartDashboard.putBoolean("BumpSwitch", bumpSwitch.getLimitState());
-
-    SmartDashboard.putNumber("Shooter RPM", NEOShooter.getInstance().getRPM());
-
-    SmartDashboard.putNumber("Climber Position", cimShooter.getClimberPos());
-  }
-
-  /**
-   * This function is called once each time the robot enters Disabled mode.
-   */
-  @Override
-  public void disabledInit() {
-  }
-
-  @Override
-  public void disabledPeriodic() {
-  }
-
-  @Override
-  public void autonomousInit() {
-  }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-  }
-
-  @Override
-  public void teleopInit() {
-    System.out.println("teleop init");
-
-    oi = new OI();
-
-    // Schedules the joystick listener for Req 5
-    //CIMJoystickControlCommand.schedule();
-  }
-
-  @Override
-  public void teleopPeriodic() {
-
-  }
-
-  @Override
-  public void testInit() {
-  }
-
-  @Override
-  public void testPeriodic() {
-  }
-
-  @Override
-  public void simulationInit() {
-  }
-
-  @Override
-  public void simulationPeriodic(){
-  }
+	
+	public static OI oi;
+	public static Shooter shooter;
+	
+	
+	/**
+	 * This function is run when the robot is first started up and should be used for any
+	 * initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		System.out.println("Robot init");
+		
+		shooter = new Shooter();
+		shooter.setDefaultCommand(new IdleShooter());
+		shooter.initDiagnostics();
+		
+		SmartDashboard.putData(shooter);
+	}
+	
+	
+	/**
+	 * This function is called every robot packet, no matter the mode. Use this for items like
+	 * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
+	 *
+	 * <p>This runs after the mode specific periodic functions, but before
+	 * LiveWindow and SmartDashboard integrated updating.
+	 */
+	@Override
+	public void robotPeriodic() {
+		CommandScheduler.getInstance().run();
+		
+		shooter.updateDiagnostics();
+	}
+	
+	
+	@Override
+	public void disabledInit() {
+	}
+	
+	
+	@Override
+	public void disabledPeriodic() {
+	}
+	
+	
+	@Override
+	public void autonomousInit() {
+	}
+	
+	
+	@Override
+	public void autonomousPeriodic() {
+	}
+	
+	
+	@Override
+	public void teleopInit() {
+		System.out.println("teleop init");
+		
+		oi = new OI();
+	}
+	
+	
+	@Override
+	public void teleopPeriodic() {
+	}
+	
+	
+	@Override
+	public void testInit() {
+	}
+	
+	
+	@Override
+	public void testPeriodic() {
+	}
+	
+	
+	@Override
+	public void simulationInit() {
+	}
+	
+	
+	@Override
+	public void simulationPeriodic() {
+	}
 }

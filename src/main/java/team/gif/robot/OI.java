@@ -4,12 +4,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import team.gif.lib.AxisButton;
-import team.gif.robot.commands.*;
-import team.gif.robot.commands.ResetClimber;
+import team.gif.robot.commands.SetShooterVelocity;
 
 
 public class OI {
-    private static OI instance = null;
 
     /*
      * TODO: Instantiate all joysticks/controllers and their buttons here
@@ -60,22 +58,6 @@ public class OI {
     public final AxisButton aLT = new AxisButton(aux,2,.05);
 
     public OI() {
-        /*
-         * TODO: Define what each button does
-         *
-         * Examples:
-         * dLT.whenPressed(new CollectCommand());
-         * dRT.whileHeld(new EjectCommand());
-         *
-         */
-//        dA.whileHeld(new RunCIMShooter(true)); // Req 3
-//        dY.whileHeld(new RunCIMShooter(false)); // Req 4
-//        dY.whileHeld(new RunNEOShooterVoltage()); // Req 6
-//        dA.whileHeld(new RunNEOShooterRPM()); // Req
-        dStart.whenPressed(new ResetClimber());
-
-        dA.whenPressed(new ElevatorMax());
-        dX.whenPressed(new LowerElevator());
-        dY.whenPressed(new Lower4Inches());
+        dA.whenHeld(new SetShooterVelocity());
     }
 }
