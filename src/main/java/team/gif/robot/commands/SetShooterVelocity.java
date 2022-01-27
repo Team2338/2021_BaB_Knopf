@@ -15,7 +15,7 @@ public class SetShooterVelocity extends CommandBase {
 	
 	@Override
 	public void initialize() {
-		Robot.shooter.fetchPidConstants();
+		Robot.shooter.updatePidConstants();
 		Robot.shooter.setPidVelocity(16000);
 	}
 	
