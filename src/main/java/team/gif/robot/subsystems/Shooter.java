@@ -15,13 +15,9 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
-import edu.wpi.first.wpilibj.shuffleboard.WidgetType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import team.gif.robot.Constants;
 import team.gif.robot.RobotMap;
-
-import java.util.function.DoubleSupplier;
 
 public class Shooter extends SubsystemBase {
 	
@@ -177,18 +173,5 @@ public class Shooter extends SubsystemBase {
 	private double normalizeGain(double rawGain) {
 		return Math.min(rawGain / 1023, 1.0);
 	}
-	
-	private DoubleSupplier getIfVelocityMode(DoubleSupplier function) {
-		return () -> {
-			if (flywheel.getControlMode() == ControlMode.Velocity) {
-				return function.getAsDouble();
-			}
-			
-			return 0;
-		};
-	}
-	
-	
-	
 	
 }
