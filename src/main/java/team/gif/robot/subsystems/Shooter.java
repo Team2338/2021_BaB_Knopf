@@ -45,7 +45,7 @@ public class Shooter extends SubsystemBase {
 		
 		// Configure the sensor
 		flywheel.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.QuadEncoder, 0, 0);
-		flywheel.setSensorPhase(true);
+		flywheel.setSensorPhase(false);
 		flywheel.configVelocityMeasurementPeriod(VelocityMeasPeriod.Period_100Ms);
 //		flywheel.configVelocityMeasurementWindow(64);
 		

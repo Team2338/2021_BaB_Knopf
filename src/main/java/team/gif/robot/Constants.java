@@ -21,7 +21,7 @@ public final class Constants {
     }
     
     public static class Shooter {
-        public static final double FLYWHEEL_kP = 0.18;
+        public static final double FLYWHEEL_kP = 0.4;
         public static final double FLYWHEEL_kI = 0.0;
         public static final double FLYWHEEL_kD = 0.0;
         public static final double FLYWHEEL_kF = 0.032;

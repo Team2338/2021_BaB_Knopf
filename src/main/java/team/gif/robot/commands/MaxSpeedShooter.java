@@ -3,24 +3,21 @@ package team.gif.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import team.gif.robot.Robot;
 
-/**
- * Uses PID to set the velocity of the flywheel
- */
-public class SetShooterVelocity extends CommandBase {
-	
-	public SetShooterVelocity() {
+public class MaxSpeedShooter extends CommandBase {
+
+	public MaxSpeedShooter() {
 		super();
 		addRequirements(Robot.shooter);
 	}
 	
 	@Override
 	public void initialize() {
-		Robot.shooter.updatePidConstants();
-		Robot.shooter.setPidVelocity(-21150);
+		// Do nothing
 	}
 	
-	@Override public void execute() {
-		// Do nothing
+	@Override
+	public void execute() {
+		Robot.shooter.setPercentVelocity(-1);
 	}
 	
 	@Override
@@ -30,7 +27,7 @@ public class SetShooterVelocity extends CommandBase {
 	
 	@Override
 	public void end(boolean interrupted) {
-		Robot.shooter.setPercentVelocity(0);
+		// Do nothing
 	}
 	
 }
