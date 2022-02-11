@@ -3,7 +3,9 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.robot.commands.IdleNeoShooter;
 import team.gif.robot.commands.IdleShooter;
+import team.gif.robot.subsystems.NEOShooter;
 import team.gif.robot.subsystems.Shooter;
 
 /**
@@ -16,6 +18,7 @@ public class Robot extends TimedRobot {
 	
 	public static OI oi;
 	public static Shooter shooter;
+	public static NEOShooter neoShooter;
 	
 	
 	/**
@@ -29,6 +32,9 @@ public class Robot extends TimedRobot {
 		shooter = new Shooter();
 		shooter.setDefaultCommand(new IdleShooter());
 		shooter.initDiagnostics();
+		
+		neoShooter = new NEOShooter();
+		neoShooter.setDefaultCommand(new IdleNeoShooter());
 		
 		SmartDashboard.putData(shooter);
 	}

@@ -9,20 +9,11 @@ import team.gif.robot.RobotMap;
  * Can use voltage as input or RPM
  */
 public class NEOShooter extends SubsystemBase {
-    private static NEOShooter instance = null;
-
-    // creates a singleton class (only 1 instance can be instantiated)
-    public static NEOShooter getInstance() {
-        if (instance == null) {
-            instance = new NEOShooter();
-        }
-        return instance;
-    }
 
     private static final CANSparkMax shooterMotor = new CANSparkMax(RobotMap.MOTOR_SPARKMAX_ONE, CANSparkMaxLowLevel.MotorType.kBrushless);
     private static final SparkMaxPIDController shooterPIDController = shooterMotor.getPIDController();
 
-    private NEOShooter() {
+    public NEOShooter() {
         super();
 
         shooterMotor.restoreFactoryDefaults();
