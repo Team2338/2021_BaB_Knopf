@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import team.gif.lib.AxisButton;
 import team.gif.robot.commands.MaxSpeedShooter;
+import team.gif.robot.commands.RunNeoShooter;
 import team.gif.robot.commands.SetShooterVelocity;
 
 
@@ -61,5 +62,6 @@ public class OI {
     public OI() {
         dA.whenHeld(new SetShooterVelocity());
         dY.whenHeld(new MaxSpeedShooter());
+        dX.whenHeld(new RunNeoShooter());
     }
 }
